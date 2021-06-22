@@ -39,9 +39,18 @@
           <p> conteudo da instalacao do nginx: {{ var_nginx }} </p>
           <p> Conteudo da variavel response: {{ response.stdout }} </p>
           <p> Conteudo da variavel "Datacenter" do inventario: {{ datacenter }}
+    tags:
+      - deploy
+    notify: Restart Nginx
 
   - name: Enable and start nginx service
     systemd:
        state: started
        name: nginx
        enabled: yes
+
+  handlers:
+    - name: Restart Ngnx
+      service:
+        name: nginx
+        state: restarted
