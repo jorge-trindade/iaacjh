@@ -12,4 +12,4 @@
 
   - name: condicional
     shell: "echo OLA > /tmp/arquivo"
-    when: linux_date.failed == True
+    when: linux_date.failed == False
